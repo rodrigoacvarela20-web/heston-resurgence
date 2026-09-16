@@ -1,118 +1,40 @@
 # Resurgent Asymptotics of Heston Rare-Event Tails
 
-**Research-project release (v1.0; not peer reviewed).** This repository studies whether non-perturbative saddle geometry in a small-noise Heston model is encoded in the large-order behaviour and Borel structure of a rare-event tail probability.
+**Exploratory computational research project · manuscript v1.0 · not peer reviewed.**
 
-The project uses tools familiar from semiclassical analysis and quantum field theory - saddle expansions, instanton actions, Borel transforms, Padé continuation, Stokes phenomena, Picard-Lefschetz theory and uniform Airy asymptotics - but applies them to a classical stochastic-volatility problem. The claim is deliberately narrow: this is evidence for a resurgent description of one Heston tail observable, not a claim that financial markets are quantum systems.
+This project asks whether saddle-point geometry and high-order asymptotics of a *small-noise deformation* of the Heston stochastic-volatility model can be related through Borel analysis. This is a mathematical investigation of a specified tail observable; it does **not** assert that markets are quantum systems or that the model predicts crashes or trading returns.
 
-## Main results
+## Research question and method
 
-For the benchmark
+For a fixed left-tail event of the log return, compare the rare-event rate obtained from the affine cumulant-generating function with an independent Hamiltonian/large-deviation computation, then probe the large-order fluctuation coefficients, adjacent complex saddles and Borel–Padé singularity locations. Numerical continuation explores what happens near a saddle collision, where an Airy-type uniform approximation is relevant.
 
-```text
-kappa=2, theta=v0=0.04, xi=0.45, rho=-0.7, T=1, x*= -0.25
-```
+**Reference parameters:** `kappa=2, theta=v0=0.04, xi=0.45, rho=-0.7, T=1, x*=-0.25`.
 
-the independent affine and Freidlin-Wentzell calculations give the same leading rare-event scale to numerical precision. High-order fluctuations recover the associated Borel scale, and Borel-Padé resummation extends the useful range of the small-noise expansion.
+![Numerical comparison of the Heston rate and large-order/Borel estimates](figures/heston_large_order_action.png)
 
-The first adjacent logarithmic sheet gives a stronger test. Its independently continued action is
+The manuscript includes a more extensive numerical study of Borel singularities, Stokes data and caustics. These are numerical research claims, **not proven global theorems**. In particular, portions of the costly high-order, Stokes and post-caustic calculations have not yet been independently regenerated from scratch; some successful scripts read precomputed coefficients. See [exact replication status](HEAVY_REPLICATION_STATUS_2026-09-16.md) and [technical audit](SCIENTIFIC_AUDIT_2026-09-16.md) before citing quantitative claims.
 
-```text
-Delta S1 = 2.792240162467 +/- 2.482246047281 i
-```
+## Manuscript and source
 
-and a 75-coefficient late-order fit locates the corresponding secondary Borel singularity within `0.328%`. The direct lateral Borel jump gives
+- [Research manuscript (PDF)](paper/resurgent_stochastic_finance.pdf) and [LaTeX source](paper/main.tex).
+- [Numerical methods](src/ftfinance/) and [experiment entry points](experiments/).
+- [Reference figures](figures/), [numerical outputs](results/) and [detailed methodology](REPRODUCIBILITY.md).
 
-```text
-S_lateral = -0.998565810 + 0.001484197 i
-```
+The PDF reflects the original v1.0 experiments, not a subsequently peer-reviewed or fully reproduced revision. The current Python code includes later fixes; the PDF and stored outputs have **not** all been regenerated with those fixes.
 
-while an independent Picard-Lefschetz calculation gives the oriented intersection integer
-
-```text
-S01 = -1.
-```
-
-Parameter continuation shows that this structure survives on a connected nondegenerate domain. The continuation also reveals where the local transseries basis must reorganize:
-
-- a correlation fold at `rho_c = 0.0299495156775`, where two real adjacent saddles coalesce and continue as a complex-conjugate pair;
-- anti-Stokes crossings where the real part of the adjacent action vanishes;
-- an Airy/Chester-Friedman-Ursell uniform description through the fold;
-- coherent post-caustic continuation of lifted actions, local fluctuation sectors and projected Borel singularities.
-
-The resulting picture is best described as a **resurgent atlas**: local transseries charts on regular parameter domains, Airy-uniform blocks at caustics, and changes of exponential dominance across anti-Stokes boundaries.
-
-## Paper
-
-The full derivation, numerical tests, limitations and references are in:
-
-```text
-paper/resurgent_stochastic_finance.pdf
-paper/main.tex
-```
-
-The final manuscript title is **“Resurgent Asymptotics of Rare-Event Tails in the Heston Model: Borel Singularities, Stokes Data, and Caustic Continuation.”**
-
-## Quick start
-
-Create an environment and install the package:
+## Verify locally
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate        # Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
+# Activate the environment for your operating system.
 python -m pip install -e ".[dev]"
+python -m pytest -q tests
 ```
 
-Run the release validation:
+The quick test suite passed **24 tests in a local audit copy**; this is an internal regression check, not an independent scientific validation. For the three shorter numerical examples, use `python reproduce.py --benchmarks`. The expensive extended scripts should be run separately, in a disposable copy, with adequate time and memory: they can overwrite reference outputs. See [reproduction notes](REPRODUCIBILITY.md).
 
-```bash
-python reproduce.py
-```
+## Authorship, credit and rights
 
-This runs the automated regression tests. To rerun the three core numerical benchmarks as well, use `python reproduce.py --benchmarks`. The heavier secondary-sector and fold checks are available with `python reproduce.py --extended`.
+**Research project attributed to Rodrigo Varela.** [Citation metadata](CITATION.cff). The project was developed with computational/editorial assistance, and the listed author remains responsible for checking the derivations, code, interpretation and appropriate attribution before publication or academic submission. It is not presented as an independently refereed paper.
 
-For the paper build:
-
-```bash
-make paper
-```
-
-For the heavier continuation experiments, see `REPRODUCIBILITY.md`.
-
-## Repository layout
-
-```text
-src/ftfinance/       reusable numerical methods
-experiments/         reproducible experiment entry points
-tests/               automated regression tests
-results/             numerical CSV outputs
-figures/             generated research figures
-paper/               LaTeX source and compiled manuscript
-reproduce.py         one-command release validation
-RESULTS.md           detailed numerical findings
-ROADMAP.md           frozen scope + future research directions
-```
-
-## Scientific status
-
-The strongest claims supported by the code and manuscript are:
-
-1. the leading Heston large-deviation scale is recovered independently from affine, Hamiltonian and large-order calculations;
-2. the first adjacent logarithmic-sheet action is quantitatively visible in high-order/Borel data;
-3. the associated Stokes multiplier is consistent with `-1` both from a lateral Borel jump and from Picard-Lefschetz intersection geometry;
-4. the local two-sector structure deforms robustly in parameter space until caustic or anti-Stokes boundaries require a new local basis;
-5. the first correlation fold is uniformly resolved by an Airy normal form and continues into a complex-conjugate saddle pair.
-
-The project **does not** claim a global theorem for the full Heston Riemann surface, resurgence of every Heston observable, empirical prediction of financial crashes, or the existence of financial renormalons.
-
-## Reproducibility
-
-The release test suite passes `19/19` tests in the frozen v1.0 environment used to build the paper. Exact run commands, expected outputs and the distinction between quick and expensive experiments are documented in `REPRODUCIBILITY.md`.
-
-## Citation
-
-If you use or discuss this research project, see `CITATION.cff` for the preferred citation metadata.
-
-## License
-
-See `LICENSE`.
+[Copyright and reuse notice](COPYRIGHT.md). No new open-source reuse licence is granted by the **current** release. An older version was published under MIT, and this change does not revoke rights already granted for that licensed version. Public GitHub visibility still permits viewing and forking under GitHub's terms. Third-party dependencies retain their own licences.
