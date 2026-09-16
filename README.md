@@ -2,10 +2,10 @@
 
 **Borel singularities · Stokes data · caustic continuation**
 
-This repository documents Rodrigo Varela's September 2026 research manuscript, *Resurgent Asymptotics of Rare-Event Tails in the Heston Model: Borel Singularities, Stokes Data, and Caustic Continuation*. It studies a uniformly small-noise Heston left-tail observable, using affine transforms, large-order asymptotics and saddle geometry.
+Research manuscript by Rodrigo Varela (September 2026): *Resurgent Asymptotics of Rare-Event Tails in the Heston Model: Borel Singularities, Stokes Data, and Caustic Continuation*.
 
-**Publication status:** The manuscript exists as a complete 49-page PDF, but the original numerical code, data and 37 figures have not yet been supplied for this repository. The project is **not yet independently reproducible or peer reviewed**. The complete PDF and original LaTeX source still need to be uploaded to this repository; do not cite this README as a substitute for the paper. No financial-market forecasting or global resurgence theorem is claimed.
+The full original **v1.0 manuscript, Python source, numerical results and figures have now been recovered in a local publication package**. Its 19 offline regression tests passed on 16 September 2026, and the paper's 37 figure references resolve to actual image files in that package. **The full PDF, LaTeX, code, CSVs and figures have not yet been pushed to this GitHub repository.** A separately prepared upload bundle contains both this project and the protein-folding paper and code.
 
-See [manuscript publication status](PUBLICATION_STATUS.md) and the [research note](paper/OVERVIEW.md).
+The findings concern a mathematical small-noise Heston observable: they do **not** establish market predictability, a global resurgence theorem, experimental validation or external peer review. The separate v1.1 referee notes are not a revised, code-matched release; this repository is scoped to v1.0.
 
-Author: Rodrigo Varela.
+See [publication status](PUBLICATION_STATUS.md) and the [manuscript overview](paper/OVERVIEW.md). The complete PDF must be uploaded before this is treated as a paper-and-code repository.
