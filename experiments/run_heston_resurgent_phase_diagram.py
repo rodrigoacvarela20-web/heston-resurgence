@@ -105,7 +105,10 @@ def build_fold_scaling_data():
     """Continue the two saddles through the fold and test square-root scaling."""
     old=mp.mp.dps; mp.mp.dps=65
     try:
-        nf=fold_normal_form(dps=65);pc=nf['pc'];rc=nf['rhoc'];C=nf['C'];F=nf['F']
+        nf=fold_normal_form(dps=65)
+        if any(abs(mp.im(nf[key])) > mp.mpf('1e-45') for key in ('pc', 'rhoc', 'C')):
+            raise ArithmeticError('Fold root and coefficient should be real on this branch.')
+        pc, rc, C, F = mp.re(nf['pc']), mp.re(nf['rhoc']), mp.re(nf['C']), nf['F']
         deltas=[mp.mpf(v) for v in ('1e-7','2e-7','5e-7','1e-6','2e-6','5e-6','1e-5','2e-5','5e-5','1e-4','2e-4','5e-4','1e-3')]
         rows=[]
         for side in (-1,1):
