@@ -1,0 +1,9 @@
+quantity,value
+rho_c,0.02994951567745894
+p_c,-13.470910377298026
+max_monodromy_center_error,0.0
+max_postcaustic_cfu_imaginary_part,2.0964570858424604e-17
+max_postcaustic_borel_relative_error_32_coeffs,0.06268452215701596
+max_postcaustic_latefit_relative_error_32_coeffs,0.01928783102839217
+max_complex_fluctuation_conjugacy_error,0.0
+max_airy_reexpansion_error_absZ_ge_4,0.012462517940448286

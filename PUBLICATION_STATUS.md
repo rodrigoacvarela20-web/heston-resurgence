@@ -1,15 +1,9 @@
-# Publication status
+# Publication status — research-project v1.0
 
-**Research manuscript repository — partial upload (September 2026).**
+This repository contains the v1.0 research manuscript (`paper/resurgent_stochastic_finance.pdf`, `paper/main.tex`), the corresponding Python source, experiments, 51 PNG research figures, CSV results and automated tests.
 
-The full 49-page PDF and `paper/main.tex` have been prepared offline but have **not yet been uploaded** to this repository. The paper's LaTeX refers to 37 figure files that are likewise missing from this partial publication. The original numerical project mentioned in its earlier README includes `src/ftfinance/`, `experiments/`, `tests/`, `results/`, `figures/` and `reproduce.py`; those files are not presently available in this repository.
+On 16 September 2026 the original uploaded v1.0 archive passed **19/19 offline regression tests** in the preparation environment. All 37 `\includegraphics` references in the LaTeX resolved to files in that archive. These checks do not independently establish the paper's mathematical novelty, validate all expensive continuation experiments, or constitute peer review.
 
-## Remaining publication steps
+The separate later `v1.1_review_notes/` in the author's source ZIP were **not** bundled into this repository: they describe a subsequent audit, without a matching updated PDF and source package. Scientific claims here belong to v1.0 only.
 
-1. Upload the prepared manuscript PDF to `paper/resurgent_stochastic_finance.pdf` and source to `paper/main.tex`.
-2. Recover and upload the original figure files referenced in the LaTeX, without substituting unrelated graphics.
-3. Recover the complete original numerical project; run its stated tests and reproduce the headline benchmark figures and values in a clean environment.
-4. Check manuscript-vs-code consistency and record exact commands, dependency versions, output checksums and limitations in `REPRODUCIBILITY.md`.
-5. Select a software/manuscript license only after the author approves it.
-
-The values described in [paper/OVERVIEW.md](paper/OVERVIEW.md) are reported by the prepared manuscript, **not independently validated by this partial repository**. The work is exploratory mathematical finance and makes no claim about market prediction.
+For numerical experiments and limitations read [REPRODUCIBILITY.md](REPRODUCIBILITY.md), and for the manuscript see [paper/resurgent_stochastic_finance.pdf](paper/resurgent_stochastic_finance.pdf).

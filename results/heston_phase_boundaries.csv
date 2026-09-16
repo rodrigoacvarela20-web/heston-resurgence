@@ -1,0 +1,4 @@
+boundary,value,secondary_value,meaning
+rho_saddle_node,0.0299495155948932,-13.4709389131218,first two adjacent real stationary points coalesce
+T_antistokes,2.67815584420614,0,Re DeltaS1 changes sign
+kappa_antistokes,5.47078861767783,0,Re DeltaS1 changes sign
